@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="playersList">
+<head>
+	
+
+	<!--<script type="text/javascript" src="js/angular.min.js"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	
+	<script type="text/javascript" src="js/basketball.js"></script>
+	
+	<script type="text/javascript" src="js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+</head>
+<body ng-controller="basketballCtrl as basketball">
+
+	<h1>The Players:</h1>
+	<div>
+		<div id="revDiv">
+			<p id="revIndicator">Not Reversed</p>
+		</div>
+		
+		<div id="sortDiv">
+			<!--<form>-->
+				<button type="button" ng-click="basketball.newSort('first')">Sort by First</button>
+				<button type="button" ng-click="basketball.newSort('last')">Sort by Last</button>
+				<button type="button" ng-click="basketball.newSort('position')">Sort by Position</button>
+				<button type="button" ng-click="basketball.newSort('games')">Sort by Games</button>
+				Search:<!--<input type="text" name="search" id="searcher" value="">-->
+				<input ng-model="searchText">
+				<!--<input type="submit">-->
+				
+			<!--</form>-->
+		</div>
+		
+		<ul>
+			<!--<li ng-repeat="player in basketball.players | orderBy: basketball.currentSort: basketball.reverse">-->
+			<!--<li ng-repeat="player in basketball.players | orderBy: basketball.current: basketball.reverse" ng-show="basketball.checkSearch(player)">-->
+			<li ng-repeat="player in basketball.players | filter: searchText | orderBy: basketball.current: basketball.reverse">
+			<!--pass in val;ue of search into checkSearch-->
+				
+				<p>first name: {{player.first}}</p>
+				<p>last name: {{player.last}}</p>
+				<p>position: {{player.position}}</p>
+				<p>number of games: {{player.games}}</p>
+				<p>shooting percentage: {{basketball.showShootingPercent(player) | number: 2}}%</p>
+				<p></p>
+				<div id="imgDiv" ng-show="player.images.length > 0" ng-repeat="image in player.images">
+					<img src="{{image}}"/>
+				</div>
+				
+			</li>
+		</ul>
+	
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+#revDiv{
+	display:inline-flex;
+}
+#revDiv > *{
+	margin: 5px;
+}
+#imgDiv{
+	
+	display:inline-flex;
+}
+img{
+	max-height: 100px;
+}
